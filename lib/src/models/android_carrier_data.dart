@@ -6,7 +6,7 @@ class AndroidCarrierData {
   final bool isDataEnabled;
   final List<SubscriptionsInfo> subscriptionsInfo;
   final bool isDataCapable;
-  // final String isMultiSimSupported;
+  final String isMultiSimSupported;
   final bool isSmsCapable;
   final List<TelephonyInfo> telephonyInfo;
   AndroidCarrierData({
@@ -14,7 +14,7 @@ class AndroidCarrierData {
     required this.isDataEnabled,
     required this.subscriptionsInfo,
     required this.isDataCapable,
-    // required this.isMultiSimSupported,
+    required this.isMultiSimSupported,
     required this.isSmsCapable,
     required this.telephonyInfo,
   });
@@ -33,7 +33,7 @@ class AndroidCarrierData {
       isDataEnabled: isDataEnabled ?? this.isDataEnabled,
       subscriptionsInfo: subscriptionsInfo ?? this.subscriptionsInfo,
       isDataCapable: isDataCapable ?? this.isDataCapable,
-      // isMultiSimSupported: isMultiSimSupported ?? this.isMultiSimSupported,
+      isMultiSimSupported: isMultiSimSupported ?? this.isMultiSimSupported,
       isSmsCapable: isSmsCapable ?? this.isSmsCapable,
       telephonyInfo: telephonyInfo ?? this.telephonyInfo,
     );
@@ -45,7 +45,7 @@ class AndroidCarrierData {
       'isDataEnabled': isDataEnabled,
       'subscriptionsInfo': subscriptionsInfo.map((x) => x.toMap()).toList(),
       'isDataCapable': isDataCapable,
-      // 'isMultiSimSupported': isMultiSimSupported,
+      'isMultiSimSupported': isMultiSimSupported,
       'isSmsCapable': isSmsCapable,
       'telephonyInfo': telephonyInfo.map((x) => x.toMap()).toList(),
     };
@@ -58,7 +58,7 @@ class AndroidCarrierData {
       subscriptionsInfo: List<SubscriptionsInfo>.from(
           map['subscriptionsInfo']?.map((x) => SubscriptionsInfo.fromMap(x))),
       isDataCapable: map['isDataCapable'] ?? false,
-      // isMultiSimSupported: map['isMultiSimSupported'] ?? '',
+      isMultiSimSupported: map['isMultiSimSupported'] ?? '',
       isSmsCapable: map['isSmsCapable'] ?? false,
       telephonyInfo: List<TelephonyInfo>.from(
           map['telephonyInfo']?.map((x) => TelephonyInfo.fromMap(x))),
@@ -72,7 +72,7 @@ class AndroidCarrierData {
 
   @override
   String toString() {
-    return 'AndroidCarrierData(isVoiceCapable: $isVoiceCapable, isDataEnabled: $isDataEnabled, subscriptionsInfo: $subscriptionsInfo, isDataCapable: $isDataCapable, isSmsCapable: $isSmsCapable, telephonyInfo: $telephonyInfo)';
+    return 'AndroidCarrierData(isVoiceCapable: $isVoiceCapable, isDataEnabled: $isDataEnabled, subscriptionsInfo: $subscriptionsInfo, isDataCapable: $isDataCapable, isMultiSimSupported: $isMultiSimSupported, isSmsCapable: $isSmsCapable, telephonyInfo: $telephonyInfo)';
   }
 
   @override
@@ -84,7 +84,7 @@ class AndroidCarrierData {
         other.isDataEnabled == isDataEnabled &&
         listEquals(other.subscriptionsInfo, subscriptionsInfo) &&
         other.isDataCapable == isDataCapable &&
-        // other.isMultiSimSupported == isMultiSimSupported &&
+        other.isMultiSimSupported == isMultiSimSupported &&
         other.isSmsCapable == isSmsCapable &&
         listEquals(other.telephonyInfo, telephonyInfo);
   }
@@ -92,12 +92,12 @@ class AndroidCarrierData {
   @override
   int get hashCode {
     return isVoiceCapable.hashCode ^
-    isDataEnabled.hashCode ^
-    subscriptionsInfo.hashCode ^
-    isDataCapable.hashCode ^
-    // isMultiSimSupported.hashCode ^
-    isSmsCapable.hashCode ^
-    telephonyInfo.hashCode;
+        isDataEnabled.hashCode ^
+        subscriptionsInfo.hashCode ^
+        isDataCapable.hashCode ^
+        isMultiSimSupported.hashCode ^
+        isSmsCapable.hashCode ^
+        telephonyInfo.hashCode;
   }
 }
 
@@ -253,139 +253,139 @@ class SubscriptionsInfo {
   @override
   int get hashCode {
     return mobileCountryCode.hashCode ^
-    isOpportunistic.hashCode ^
-    mobileNetworkCode.hashCode ^
-    displayName.hashCode ^
-    isNetworkRoaming.hashCode ^
-    simSlotIndex.hashCode ^
-    phoneNumber.hashCode ^
-    countryIso.hashCode ^
-    subscriptionType.hashCode ^
-    cardId.hashCode ^
-    isEmbedded.hashCode ^
-    carrierId.hashCode ^
-    subscriptionId.hashCode ^
-    simSerialNo.hashCode ^
-    dataRoaming.hashCode;
+        isOpportunistic.hashCode ^
+        mobileNetworkCode.hashCode ^
+        displayName.hashCode ^
+        isNetworkRoaming.hashCode ^
+        simSlotIndex.hashCode ^
+        phoneNumber.hashCode ^
+        countryIso.hashCode ^
+        subscriptionType.hashCode ^
+        cardId.hashCode ^
+        isEmbedded.hashCode ^
+        carrierId.hashCode ^
+        subscriptionId.hashCode ^
+        simSerialNo.hashCode ^
+        dataRoaming.hashCode;
   }
 }
 
 class TelephonyInfo {
-  // final String networkCountryIso;
+  final String networkCountryIso;
   final String mobileCountryCode;
 
   /// The mobile network code (MNC) for the user’s cellular service provider.
   final String mobileNetworkCode;
 
+  /// The name of the user’s home cellular service provider.
+  final String displayName;
+
+  /// Constant indicating the state of the device SIM card in a logical slot; SIM_STATE_UNKNOWN, SIM_STATE_ABSENT, SIM_STATE_PIN_REQUIRED, SIM_STATE_PUK_REQUIRED, SIM_STATE_NETWORK_LOCKED, SIM_STATE_READY, SIM_STATE_NOT_READY, SIM_STATE_PERM_DISABLED, SIM_STATE_CARD_IO_ERROR, SIM_STATE_CARD_RESTRICTED,
+  final String simState;
+
+  /// The ISO country code for the user’s cellular service provider.
+  final String isoCountryCode;
+
+  /// The cell id (cid) and local area code
+  final CellId cellId;
+
+  /// Phone number of the sim
+  final String phoneNumber;
+
   /// Carrier name of the sim
   final String carrierName;
 
-  /// The name of the user’s home cellular service provider.
-  // final String displayName;
-
-  /// Constant indicating the state of the device SIM card in a logical slot; SIM_STATE_UNKNOWN, SIM_STATE_ABSENT, SIM_STATE_PIN_REQUIRED, SIM_STATE_PUK_REQUIRED, SIM_STATE_NETWORK_LOCKED, SIM_STATE_READY, SIM_STATE_NOT_READY, SIM_STATE_PERM_DISABLED, SIM_STATE_CARD_IO_ERROR, SIM_STATE_CARD_RESTRICTED,
-  // final String simState;
-
-  /// The ISO country code for the user’s cellular service provider.
-  // final String isoCountryCode;
-
-  /// The cell id (cid) and local area code
-  // final CellId cellId;
-
-  /// Phone number of the sim
-  // final String phoneNumber;
-
-  // final int subscriptionId;
+  final int subscriptionId;
 
   /// The mobile network radioType: 5G, 4G ... 2G
-  // final String networkGeneration;
+  final String networkGeneration;
 
   /// The mobile network generation: LTE, HSDPA, e.t.c
-  // final String radioType;
+  final String radioType;
 
-  // final String networkOperatorName;
+  final String networkOperatorName;
   TelephonyInfo({
+    required this.networkCountryIso,
     required this.mobileCountryCode,
     required this.mobileNetworkCode,
+    required this.displayName,
+    required this.simState,
+    required this.isoCountryCode,
+    required this.cellId,
+    required this.phoneNumber,
     required this.carrierName,
-    // required this.networkCountryIso,
-    // required this.displayName,
-    // required this.simState,
-    // required this.isoCountryCode,
-    // required this.cellId,
-    // required this.phoneNumber,
-    // required this.subscriptionId,
-    // required this.networkGeneration,
-    // required this.radioType,
-    // required this.networkOperatorName,
+    required this.subscriptionId,
+    required this.networkGeneration,
+    required this.radioType,
+    required this.networkOperatorName,
   });
 
   TelephonyInfo copyWith({
-    String? carrierName,
+    String? networkCountryIso,
     String? mobileCountryCode,
     String? mobileNetworkCode,
-    // String? networkCountryIso,
-    // String? displayName,
-    // String? simState,
-    // String? isoCountryCode,
-    // CellId? cellId,
-    // String? phoneNumber,
-    // int? subscriptionId,
-    // int? phoneCount,
-    // String? networkGeneration,
-    // String? radioType,
-    // String? networkOperatorName,
+    String? displayName,
+    String? simState,
+    String? isoCountryCode,
+    CellId? cellId,
+    String? phoneNumber,
+    String? carrierName,
+    int? subscriptionId,
+    int? phoneCount,
+    String? networkGeneration,
+    String? radioType,
+    String? networkOperatorName,
   }) {
     return TelephonyInfo(
+      networkCountryIso: networkCountryIso ?? this.networkCountryIso,
       mobileCountryCode: mobileCountryCode ?? this.mobileCountryCode,
       mobileNetworkCode: mobileNetworkCode ?? this.mobileNetworkCode,
+      displayName: displayName ?? this.displayName,
+      simState: simState ?? this.simState,
+      isoCountryCode: isoCountryCode ?? this.isoCountryCode,
+      cellId: cellId ?? this.cellId,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
       carrierName: carrierName ?? this.carrierName,
-      // networkCountryIso: networkCountryIso ?? this.networkCountryIso,
-      // displayName: displayName ?? this.displayName,
-      // simState: simState ?? this.simState,
-      // isoCountryCode: isoCountryCode ?? this.isoCountryCode,
-      // cellId: cellId ?? this.cellId,
-      // phoneNumber: phoneNumber ?? this.phoneNumber,
-      // subscriptionId: subscriptionId ?? this.subscriptionId,
-      // networkGeneration: networkGeneration ?? this.networkGeneration,
-      // radioType: radioType ?? this.radioType,
-      // networkOperatorName: networkOperatorName ?? this.networkOperatorName,
+      subscriptionId: subscriptionId ?? this.subscriptionId,
+      networkGeneration: networkGeneration ?? this.networkGeneration,
+      radioType: radioType ?? this.radioType,
+      networkOperatorName: networkOperatorName ?? this.networkOperatorName,
     );
   }
 
   Map<dynamic, dynamic> toMap() {
     return {
+      'networkCountryIso': networkCountryIso,
       'mobileCountryCode': mobileCountryCode,
       'mobileNetworkCode': mobileNetworkCode,
+      'displayName': displayName,
+      'simState': simState,
+      'isoCountryCode': isoCountryCode,
+      'cellId': cellId.toMap(),
+      'phoneNumber': phoneNumber,
       'carrierName': carrierName,
-      // 'networkCountryIso': networkCountryIso,
-      // 'displayName': displayName,
-      // 'simState': simState,
-      // 'isoCountryCode': isoCountryCode,
-      // 'cellId': cellId.toMap(),
-      // 'phoneNumber': phoneNumber,
-      // 'subscriptionId': subscriptionId,
-      // 'networkGeneration': networkGeneration,
-      // 'radioType': radioType,
-      // 'networkOperatorName': networkOperatorName,
+      'subscriptionId': subscriptionId,
+      'networkGeneration': networkGeneration,
+      'radioType': radioType,
+      'networkOperatorName': networkOperatorName,
     };
   }
 
   factory TelephonyInfo.fromMap(Map<dynamic, dynamic> map) {
     return TelephonyInfo(
+      networkCountryIso: map['networkCountryIso'] ?? '',
       mobileCountryCode: map['mobileCountryCode'] ?? '',
       mobileNetworkCode: map['mobileNetworkCode'] ?? '',
+      displayName: map['displayName'] ?? '',
+      simState: map['simState'] ?? '',
+      isoCountryCode: map['isoCountryCode'] ?? '',
+      cellId: CellId.fromMap(map['cellId']),
+      phoneNumber: map['phoneNumber'] ?? '',
       carrierName: map['carrierName'] ?? '',
-      // networkCountryIso: map['networkCountryIso'] ?? '',
-      // displayName: map['displayName'] ?? '',
-      // simState: map['simState'] ?? '',
-      // isoCountryCode: map['isoCountryCode'] ?? '',
-      // cellId: CellId.fromMap(map['cellId']),
-      // phoneNumber: map['phoneNumber'] ?? '',
-      // subscriptionId: map['subscriptionId'] ?? 0,
-      // networkGeneration: map['networkGeneration'] ?? '',
-      // radioType: map['radioType'] ?? '',
-      // networkOperatorName: map['networkOperatorName'] ?? '',
+      subscriptionId: map['subscriptionId'] ?? 0,
+      networkGeneration: map['networkGeneration'] ?? '',
+      radioType: map['radioType'] ?? '',
+      networkOperatorName: map['networkOperatorName'] ?? '',
     );
   }
 
@@ -394,14 +394,9 @@ class TelephonyInfo {
   factory TelephonyInfo.fromJson(String source) =>
       TelephonyInfo.fromMap(json.decode(source));
 
-  // @override
-  // String toString() {
-  //   return 'TelephonyInfo(networkCountryIso: $networkCountryIso, mobileCountryCode: $mobileCountryCode, mobileNetworkCode: $mobileNetworkCode, displayName: $displayName, simState: $simState, isoCountryCode: $isoCountryCode, cellId: $cellId, phoneNumber: $phoneNumber, carrierName: $carrierName, subscriptionId: $subscriptionId, networkGeneration: $networkGeneration, radioType: $radioType, networkOperatorName: $networkOperatorName)';
-  // }
-
   @override
   String toString() {
-    return 'TelephonyInfo(mobileCountryCode: $mobileCountryCode, mobileNetworkCode: $mobileNetworkCode, carrierName: $carrierName)';
+    return 'TelephonyInfo(networkCountryIso: $networkCountryIso, mobileCountryCode: $mobileCountryCode, mobileNetworkCode: $mobileNetworkCode, displayName: $displayName, simState: $simState, isoCountryCode: $isoCountryCode, cellId: $cellId, phoneNumber: $phoneNumber, carrierName: $carrierName, subscriptionId: $subscriptionId, networkGeneration: $networkGeneration, radioType: $radioType, networkOperatorName: $networkOperatorName)';
   }
 
   @override
@@ -409,36 +404,36 @@ class TelephonyInfo {
     if (identical(this, other)) return true;
 
     return other is TelephonyInfo &&
+        other.networkCountryIso == networkCountryIso &&
         other.mobileCountryCode == mobileCountryCode &&
         other.mobileNetworkCode == mobileNetworkCode &&
-        other.carrierName == carrierName;
-    // other.networkCountryIso == networkCountryIso &&
-    // other.displayName == displayName &&
-    // other.simState == simState &&
-    // other.isoCountryCode == isoCountryCode &&
-    // other.cellId == cellId &&
-    // other.phoneNumber == phoneNumber &&
-    // other.subscriptionId == subscriptionId &&
-    // other.networkGeneration == networkGeneration &&
-    // other.radioType == radioType &&
-    // other.networkOperatorName == networkOperatorName;
+        other.displayName == displayName &&
+        other.simState == simState &&
+        other.isoCountryCode == isoCountryCode &&
+        other.cellId == cellId &&
+        other.phoneNumber == phoneNumber &&
+        other.carrierName == carrierName &&
+        other.subscriptionId == subscriptionId &&
+        other.networkGeneration == networkGeneration &&
+        other.radioType == radioType &&
+        other.networkOperatorName == networkOperatorName;
   }
 
   @override
   int get hashCode {
-    return mobileCountryCode.hashCode ^
-    mobileNetworkCode.hashCode ^
-    carrierName.hashCode;
-    // networkCountryIso.hashCode ^
-    // displayName.hashCode ^
-    // simState.hashCode ^
-    // isoCountryCode.hashCode ^
-    // cellId.hashCode ^
-    // phoneNumber.hashCode ^
-    // subscriptionId.hashCode ^
-    // networkGeneration.hashCode ^
-    // radioType.hashCode ^
-    // networkOperatorName.hashCode;
+    return networkCountryIso.hashCode ^
+        mobileCountryCode.hashCode ^
+        mobileNetworkCode.hashCode ^
+        displayName.hashCode ^
+        simState.hashCode ^
+        isoCountryCode.hashCode ^
+        cellId.hashCode ^
+        phoneNumber.hashCode ^
+        carrierName.hashCode ^
+        subscriptionId.hashCode ^
+        networkGeneration.hashCode ^
+        radioType.hashCode ^
+        networkOperatorName.hashCode;
   }
 }
 

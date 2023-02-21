@@ -86,20 +86,20 @@ internal class MethodCallHandlerImpl(context: Context, activity: Activity?) : Me
             val telephonyList: ArrayList<HashMap<String, Any?>> = ArrayList()
             for (i in 0 until mTelephonyManager!!.phoneCount) {
                 val data = hashMapOf<String, Any?>(
-                    "carrierName" to mTelephonyManager!!.simOperatorName,
-                    "mobileNetworkCode" to mTelephonyManager!!.simOperator?.substring(3),
-                    "mobileCountryCode" to mTelephonyManager!!.simOperator?.substring(0, 3),
-//                    "dataActivity" to mTelephonyManager!!.dataActivity,
-//                    "radioType" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) radioType() else null,
-//                    "cellId" to cellId(),
-//                    "simState" to simState(i),
-//                    "phoneNumber" to mTelephonyManager!!.line1Number,
-//                    "networkOperatorName" to mTelephonyManager!!.networkOperatorName,
-//                    "subscriptionId" to mTelephonyManager!!.subscriptionId,
-//                    "isoCountryCode" to mTelephonyManager!!.simCountryIso,
-//                    "networkCountryIso" to mTelephonyManager!!.getNetworkCountryIso(i),
-//                    "displayName" to mTelephonyManager!!.simOperatorName,
-//                    "networkGeneration" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) networkGeneration() else null,
+                        "carrierName" to mTelephonyManager!!.simOperatorName,
+                        "dataActivity" to mTelephonyManager!!.dataActivity,
+                        "radioType" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) radioType() else null,
+                        "cellId" to cellId(),
+                        "simState" to simState(i),
+                        "phoneNumber" to mTelephonyManager!!.line1Number,
+                        "networkOperatorName" to mTelephonyManager!!.networkOperatorName,
+                        "subscriptionId" to mTelephonyManager!!.subscriptionId,
+                        "isoCountryCode" to mTelephonyManager!!.simCountryIso,
+                        "networkCountryIso" to mTelephonyManager!!.getNetworkCountryIso(i),
+                        "mobileNetworkCode" to mTelephonyManager!!.simOperator?.substring(3),
+                        "displayName" to mTelephonyManager!!.simOperatorName,
+                        "mobileCountryCode" to mTelephonyManager!!.simOperator?.substring(0, 3),
+                        "networkGeneration" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) networkGeneration() else null,
                 )
 
                 telephonyList.add(data)
@@ -142,7 +142,7 @@ internal class MethodCallHandlerImpl(context: Context, activity: Activity?) : Me
             val data = hashMapOf<String, Any?>(
 
                     "isDataEnabled" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) mTelephonyManager!!.isDataEnabled else null,
-//                    "isMultiSimSupported" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) isMultiSimSupported() else null,
+                    "isMultiSimSupported" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) isMultiSimSupported() else null,
                     "isDataCapable" to if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) mTelephonyManager!!.isDataCapable else null,
                     "isSmsCapable" to mTelephonyManager!!.isSmsCapable,
                     "isVoiceCapable" to mTelephonyManager!!.isVoiceCapable,
